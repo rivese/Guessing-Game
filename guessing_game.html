@@ -1,0 +1,25 @@
+<script>
+
+    var animals = {
+
+        dog: ['loyal', 'a companion'],
+        zebra: ['striped', 'in a herd'],
+        unicorn: ['magical', 'rare'],
+        lion: ['proud', 'wild']
+    };
+
+    for (var animal in animals) {
+
+        description = animals[animal][0];
+        guess = prompt('What is an animal that is ' + description + '?');
+        i = 1
+        while (guess != animal) {
+            guess = prompt('Guessed wrong, this animal is also ' + animals[animal][i] + '. Try again!');
+            i++;  
+        }  
+    };
+        if (guess === animal) {
+            alert('You guessed correctly, good job!');   
+        } 
+
+</script>
