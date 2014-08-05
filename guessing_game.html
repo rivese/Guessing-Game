@@ -8,18 +8,39 @@
         lion: ['proud', 'wild']
     };
 
-    for (var animal in animals) {
+    function guessAnimal() {
 
-        description = animals[animal][0];
-        guess = prompt('What is an animal that is ' + description + '?');
-        i = 1
-        while (guess != animal) {
-            guess = prompt('Guessed wrong, this animal is also ' + animals[animal][i] + '. Try again!');
-            i++;  
-        }  
-    };
-        if (guess === animal) {
-            alert('You guessed correctly, good job!');   
-        } 
+        for (var animal in animals) {
+
+            description = animals[animal][0];
+            guess = prompt('What is an animal that is ' + description + '?');
+            i = 1
+            while (guess != animal) {
+                if (animals[animal][i]) {
+                    guess = prompt('Guessed wrong, this animal is also ' + animals[animal][i] + '. Try again!');
+                    i++;  
+                    } else {
+                        alert('Too many guesses & no more descriptions, you lose.');
+                        break;
+                    }
+                } 
+            };  
+        
+            if (guess === animal) {
+                alert('You guessed correctly, good job!');   
+            } 
+        };
+
+
+    do {
+        action = prompt('Please pick an option:\n1.Guess an animal\n2.Build an animal\n##Type quit to exit');
+        if (action == 1) {
+            guessAnimal();
+        } else if (action == 2) {
+            buildAnimal();
+        }
+        } while (action != 'quit');
+
+
 
 </script>
