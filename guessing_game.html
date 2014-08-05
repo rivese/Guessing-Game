@@ -1,6 +1,20 @@
 <script>
 
-    var animals = {
+    //animal list from http://en.wikipedia.org/wiki/Book_of_Imaginary_Beings
+    var imaginaryAnimals = {
+
+        Alicanto: 'A mine shaft-dwelling bird that feeds upon gold. It is pursued by miners.',
+        Bahamut: 'A huge, measureless fish which is often used to describe the spaces between heaven, earth, and hell.',
+        Centaur: 'A well-known beast with the torso of a man and the hindquarters of a horse. Most are portrayed as savage beasts, but others can be well learned in many arts.',
+        Cerberus: 'A three-headed dog known to guard the gates of the underworld in Greek mythology.',
+        Cheshire_Cat: 'A rather mischievous cat with a large, grinning face. It can also make itself invisible, leaving behind only its disembodied smile.',
+        Fairies: 'beautiful, tiny people that like to meddle in the affairs of humans.',
+        Fauna_of_Mirrors: 'It was believed that another world existed behind all mirrors, inhabited by a wide amount of unknown and strange creatures. Luckily, our worlds are now cut off from one another.',
+        Minotaur: 'A monster with the head of a bull and the body of a man.'
+
+    };
+
+    var realAnimals = {
 
         dog: ['loyal', 'a companion'],
         zebra: ['striped', 'in a herd'],
@@ -8,16 +22,17 @@
         lion: ['proud', 'wild']
     };
 
-    function guessAnimal() {
+    
+    function guessRealAnimal() {
 
-        for (var animal in animals) {
+        for (var animal in realAnimals) {
 
-            description = animals[animal][0];
+            description = realAnimals[animal][0];
             guess = prompt('What is an animal that is ' + description + '?');
             i = 1
             while (guess != animal) {
-                if (animals[animal][i]) {
-                    guess = prompt('Guessed wrong, this animal is also ' + animals[animal][i] + '. Try again!');
+                if (realAnimals[animal][i]) {
+                    guess = prompt('Guessed wrong, this animal is also ' + realAnimals[animal][i] + '. Try again!');
                     i++;  
                     } else {
                         alert('Too many guesses & no more descriptions, you lose.');
@@ -32,15 +47,34 @@
         };
 
 
+    function guessImaginaryAnimal() {
+
+        for (animal in imaginaryAnimals) {
+
+            description = imaginaryAnimals[animal];
+            guess = prompt(description);
+            numGuesses = 0
+            while (guess != animal && numGuesses <= 2) {
+                guess = prompt('Wrong, try again!');
+                alert(numGuesses);
+                numGuesses ++;
+            } 
+            if (guess === animal) {
+                alert('You guessed correctly, good job!');   
+            } 
+        };
+    };
+
+
     do {
-        action = prompt('Please pick an option:\n1.Guess an animal\n2.Build an animal\n##Type quit to exit');
+        action = prompt('Guess either a:\n1.Real animal\n2.Imaginary animal\n##Type quit to exit');
         if (action == 1) {
-            guessAnimal();
+            guessRealAnimal();
         } else if (action == 2) {
-            buildAnimal();
+            guessImaginaryAnimal();
         }
-        } while (action != 'quit');
+    } while (action != 'quit');
 
-
+    
 
 </script>
