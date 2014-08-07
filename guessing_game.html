@@ -39,7 +39,7 @@
      */
     function guessRealAnimal() {
 
-        var correct = '';
+        var correct = [];
         for (var animal in realAnimals) {
 
             var description = realAnimals[animal][0];
@@ -48,20 +48,20 @@
             while (guess.toLowerCase() != animal) {
                 if (realAnimals[animal][i]) {
                     guess = prompt('Guessed wrong, this animal is also ' + realAnimals[animal][i] + '. Try again!');
-                    i++;  
+                    i++;
                     } else {
                         alert('Too many guesses & no more descriptions, you lose on this one.');
                         break;
                     }
-                } 
-            
+                }
+
             if (guess.toLowerCase() === animal) {
                 alert('That\'s correct!');
-                correct += animal + ', '
-            }  
+                correct.push(animal);
+            }
         }
 
-        alert('Nice job, you\'ve correctly guessed: ' + correct);     
+        alert('Nice job, you\'ve correctly guessed: ' + correct);
     };
 
     /**
@@ -71,22 +71,30 @@
      */
     function guessImaginaryAnimal() {
 
-        var correct = '';
+        var correct = [];
         for (animal in imaginaryAnimals) {
 
             var description = imaginaryAnimals[animal];
             var guess = prompt(description);
             var numGuesses = 0;
-            while (guess.toLowerCase() != animal && numGuesses < 2) {
-                numGuesses ++;
-                guess = prompt('Wrong, try again! You only have ' + (3 - numGuesses) + ' guesses left.');
-                
-            } 
-            alert('Guesses are up, you lost on this one!');
-            if (guess.toLowerCase() === animal) {
+
+            if (guess.toLowerCase() != animal) {
+                while (numGuesses < 2 && guess.toLowerCase() != animal) {
+                    guess = prompt('Wrong, try again! You only have ' + (2 - numGuesses) + ' guesses left.');
+                    numGuesses ++;
+                }
+                if (numGuesses > 2 || guess.toLowerCase() != animal) {
+                    alert('Guesses are up, you lost on this one!');
+                }
+                else {
+                    alert('That\'s correct!');
+                    correct.push(animal);
+                }
+            }
+            else {
                 alert('That\'s correct!');
-                correct += animal;   
-            } 
+                correct.push(animal);
+            }
         }
 
         alert('Nice job, you\'ve correctly guessed: ' + correct);
